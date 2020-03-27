@@ -16,7 +16,7 @@ import dmacc.controller.BeanConfiguration;
 import dmacc.repository.ContactRepository;
 
 @SpringBootApplication
-public class SpringContacts2020Application implements CommandLineRunner{
+public class SpringContacts2020Application{
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringContacts2020Application.class, args);
@@ -31,7 +31,7 @@ public class SpringContacts2020Application implements CommandLineRunner{
 		 */
 	}
 	
-	@Autowired
+/*	@Autowired
 	ContactRepository repo;
 
 	@Override
@@ -53,11 +53,11 @@ public class SpringContacts2020Application implements CommandLineRunner{
 		List<Contact> allMyContacts = repo.findAll();
 		for(Contact people: allMyContacts) {
 			System.out.println(people.toString());
-		}
+		} 
 		
 		//closes the ApplicationContext resource leak - not imperative to add but nice to clean it up
 		((AbstractApplicationContext) appContext).close();
 	
-	}
+	} */
 
 }
