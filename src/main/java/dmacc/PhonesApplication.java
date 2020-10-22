@@ -10,48 +10,43 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
-import dmacc.beans.Address;
-import dmacc.beans.Contact;
+import dmacc.beans.Config;
 import dmacc.controller.BeanConfiguration;
-import dmacc.repository.ContactRepository;
+import dmacc.repository.ConfigRepository;
 
 @SpringBootApplication
-public class SpringContacts2020Application implements CommandLineRunner{
+public class PhonesApplication implements CommandLineRunner{
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringContacts2020Application.class, args);
+		SpringApplication.run(PhonesApplication.class, args);
 		
-		/*
-		 * ApplicationContext appContext = new
-		 * AnnotationConfigApplicationContext(BeanConfiguration.class);
-		 * 
-		 * Contact c = appContext.getBean("contact", Contact.class);
-		 * 
-		 * System.out.println(c.toString());
-		 */
+		
+//		  ApplicationContext appContext = new
+//		  AnnotationConfigApplicationContext(BeanConfiguration.class);
+//		  
+//		 Config c = appContext.getBean("config", Config.class);
+//		  
+//		  System.out.println(c.toString());
+		 
 	}
 	
 	@Autowired
-	ContactRepository repo;
+	ConfigRepository repo;
 
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
 		
-		//Using an existing bean
-		Contact c = appContext.getBean("contact", Contact.class);
-		c.setRelationship("best friend");
-		repo.save(c);
 		
 		//Create a bean to use - not managed by Spring
-		Contact d = new Contact("Sandra Boyton", "555-555-5556", "friend");
-		Address a = new Address("987 Elm Court", "Altoona", "IA");
-		d.setAddress(a);
+		Config c = new Config("Apple", "iphone 12 pro",2020, "A14");
+		Config d = new Config("Samsung", "Galaxy s10", 2020, "Exynos 9820");
+		repo.save(c);
 		repo.save(d);
 		
-		List<Contact> allMyContacts = repo.findAll();
-		for(Contact people: allMyContacts) {
+		List<Config> allMyContacts = repo.findAll();
+		for(Config people: allMyContacts) {
 			System.out.println(people.toString());
 		}
 		
